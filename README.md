@@ -54,8 +54,8 @@ Evaluated across 300 test queries using standard IR metrics at cutoff `k = 10`:
 ## Setup & Usage
 
 ```bash
-git clone <your-repo-url>
-cd <repo-name>
+git clone https://github.com/andrey-kurelenkov/hybrid-search-reranker
+cd hybrid-search-reranker
 pip install -r requirements.txt
 
 python hybrid_search.py
