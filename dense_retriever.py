@@ -12,7 +12,6 @@ def evaluate_dense(corpus: dict, queries: dict, qrels: dict, k: int = 10):
     model = SentenceTransformer("BAAI/bge-small-en-v1.5")
 
     if os.path.exists("doc_embeddings.npy"):
-        print("Загружаем готовые эмбеддинги с диска...")
         d_embeddings = np.load("doc_embeddings.npy")
     else:
         d_embeddings = model.encode(

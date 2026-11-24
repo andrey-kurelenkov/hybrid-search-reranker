@@ -11,16 +11,13 @@ def tokenize(text: str) -> list[str]:
 
 def evaluate_bm25(corpus: dict, queries: dict, qrels: dict, k: int = 10):
     doc_ids = list(corpus.keys())
-    print("Токенизируем корпус документов...")
     tokenized_corpus = [tokenize(corpus[doc_id]) for doc_id in doc_ids]
 
-    print("Строим индекс BM25...")
     bm25 = BM25Okapi(tokenized_corpus)
 
     recalls = []
     mrrs = []
-
-    print(f"Оцениваем качество поиска на {len(queries)} запросах...")
+    
     for q_id, query_text in tqdm(queries.items()):
         tokenized_query = tokenize(query_text)
         scores = bm25.get_scores(tokenized_query)

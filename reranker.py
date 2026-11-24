@@ -18,7 +18,6 @@ def evaluate_reranker(corpus, queries, qrels, k=10, top_n_candidates=25):
     model = SentenceTransformer("BAAI/bge-small-en-v1.5")
     
     if os.path.exists("doc_embeddings.npy"):
-        print("Загружаем готовые эмбеддинги с диска...")
         d_embeddings = np.load("doc_embeddings.npy")
     else:
         d_embeddings = model.encode(

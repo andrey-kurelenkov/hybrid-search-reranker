@@ -2,7 +2,6 @@ from datasets import load_dataset
 
 
 def load_scifact_data():
-    print("Загружаем корпус документов...")
     corpus_ds = load_dataset("BeIR/scifact", "corpus")["corpus"]
     # Превращаем в словарь {doc_id: "Title. Text"}
     corpus = {
@@ -10,11 +9,9 @@ def load_scifact_data():
         for row in corpus_ds
     }
 
-    print("Загружаем тестовые запросы...")
     queries_ds = load_dataset("BeIR/scifact", "queries")["queries"]
     queries = {row["_id"]: row["text"] for row in queries_ds}
 
-    print("Загружаем разметку релевантности (qrels)...")
     qrels_ds = load_dataset("BeIR/scifact-qrels")["test"]
     # Словарь {query_id: set(relevant_doc_ids)}
     qrels = {}
@@ -28,6 +25,6 @@ def load_scifact_data():
     test_queries = {q_id: queries[q_id] for q_id in qrels if q_id in queries}
 
     print(
-        f"Готово! Документов: {len(corpus)}, Тестовых запросов: {len(test_queries)}"
+        f"Документов: {len(corpus)}, Тестовых запросов: {len(test_queries)}"
     )
     return corpus, test_queries, qrels
